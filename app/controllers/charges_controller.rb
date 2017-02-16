@@ -62,6 +62,13 @@ class ChargesController < ApplicationController
   def downgrade_to_standard
     current_user.role = 0
     current_user.save
+    @wiki = Wiki.all.each
+    @wiki.each do |w|
+      if w.user.email == current_user.email
+        w.private = false
+        w.save
+      end
+    end
   end
   
   

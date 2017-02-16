@@ -1,6 +1,12 @@
 <h1>All Wikis</h1>
 <% @wikis.each do |wiki| %>
-  <p><%=link_to wiki.title, wiki_path(wiki.id) %></p>
+  <% if current_user.admin? || current_user.premium? %>
+    <p><%=link_to wiki.title, wiki_path(wiki.id) %></p>
+  <% else %>
+    <% if !wiki.private %>
+      <p><%=link_to wiki.title, wiki_path(wiki.id) %></p>
+    <% end %>
+  <% end %>
 <% end %>
 
 <div class="col-md-4">
