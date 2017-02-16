@@ -55,6 +55,7 @@ class WikisController < ApplicationController
     end
   end
   
+  
   private
   
   def wiki_params

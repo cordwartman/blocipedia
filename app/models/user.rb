@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   def set_default_role
     self.role ||= :standard
   end
+  
 end
