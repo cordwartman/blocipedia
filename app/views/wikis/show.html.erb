@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <p><%= @wiki.body %></p>
+            <p><%= markdown(@wiki.body) %></p>
         </div>
         <div class="col-md-4">
           <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
@@ -35,7 +35,7 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <p><%= @wiki.body %></p>
+      <p><%= markdown(@wiki.body) %></p>
     </div>
     <div class="col-md-4">
       <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
