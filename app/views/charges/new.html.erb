@@ -4,5 +4,5 @@
     <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
   <% end %>
 <% elsif user_downgrade? %>
-  <%= link_to "Downgrade Account", @charge, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to downgrade your account?' } %>
+  <%= link_to "Downgrade Account", @charge, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to downgrade your account?\n**Your private wikis will be made public.**" } %>
 <% end %>

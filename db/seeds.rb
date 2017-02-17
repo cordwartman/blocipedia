@@ -14,7 +14,8 @@ require 'faker'
   wiki = Wiki.create!(
     title: Faker::LordOfTheRings.unique.character,
     body: Faker::GameOfThrones.house + ", " + Faker::GameOfThrones.city + ", " + Faker::StarWars.quote + ".",
-    user: users.sample
+    user: users.sample,
+    private: false
   )
   wiki.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
 end
