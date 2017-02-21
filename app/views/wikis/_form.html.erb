@@ -17,6 +17,7 @@
     <%= f.label :body %>
     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter Wiki body" %>
   <% end %>
+  
   <% if current_user.admin? || current_user.premium? %>
     <div class="form-group">
       <%= f.label :private, class: 'checkbox' do %>
@@ -29,4 +30,9 @@
       <%= f.submit "Save", class: 'btn btn-success' %>
     </div>
   </div>
+  <% if wiki.private %>
+    <%= render partial: 'collaborators/form', locals: { f: f } %>
+  <% end %>
+  
+  
 <% end %>
