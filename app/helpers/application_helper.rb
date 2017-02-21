@@ -42,4 +42,8 @@ module ApplicationHelper
     markdown.render(text).html_safe
   end
   
+  def other_users
+    g = User.all.reject{|user| @wiki.users.include?(user) || user == current_user}
+  end
+  
 end

@@ -1,14 +1,10 @@
 <% if @wiki.private == true %>
-  <% if current_user.admin? || current_user.premium? %>
+  <% if current_user.admin? || current_user.premium? || @wiki.users.include?(current_user) %>
     <div>
       <h1>
-        <%= @wiki.title %> <br>
+        <%= @wiki.title %>  | <small>Private</small> <br>
         <small>
           submitted <%= time_ago_in_words(@wiki.created_at) %> ago by <%= @wiki.user.email %>
-        </small>
-        <br>
-        <small>
-          This Wiki is private.
         </small>
       </h1>
     </div>
@@ -21,6 +17,10 @@
           <%= link_to "Delete Wiki", [@wiki], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this Wiki?'} %>
         </div>
     </div>
+    <% if Collaborator.exists?(wiki_id: @wiki) %>
+      <%= render partial: 'collaborators/users' %>
+    <% end %>
+  </div>
   <% else %>
     <% controller.redirect_to wikis_path %>
   <% end %>
@@ -41,5 +41,18 @@
       <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
       <%= link_to "Delete Wiki", [@wiki], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this Wiki?'} %>
     </div>
+  </div>
+  <div>
+    <% if @wiki.users.count > 0 %>  
+      <br>
+      <small class="collab_heading">Wiki Collaborators</small>
+      <ul>
+        <% @wiki.users.each do |u| %>
+          <li class="collab_name"><%= u.email %>   
+            <%= button_to "Remove", controller: "collaborators", method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to remove this Collaborator?'} %> 
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 <% end %>

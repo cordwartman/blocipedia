@@ -66,8 +66,10 @@ class ChargesController < ApplicationController
     @wiki.each do |w|
       if w.user.email == current_user.email
         w.private = false
+        w.users.destroy_all
         w.save
       end
+      
     end
   end
   
