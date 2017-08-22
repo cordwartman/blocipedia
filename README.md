@@ -1,4 +1,4 @@
-## Blocipedia
+## Collabipedia
 
 A wiki app that allows users to create and edit wikis.
 Users can update their accounts to Premium accounts.
@@ -8,11 +8,10 @@ that can edit those wikis.
 ## Technologies used
   # Foundation
     * Ruby on Rails
-  
+
   # Gems
     * Stripe for web payments
     * Devise for authentication
     * Pundit for authorization
     * Figaro for secure environment variables.
     * Bootstrap
-  
